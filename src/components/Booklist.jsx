@@ -1,23 +1,25 @@
 import React from "react";
+import Book from "./Book";
 
-class BookList extends React.Component {
+
+class Booklist extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
         error: null,
         isLoaded: false,
-        Book: []
+        Books: []
       };
     }
   
     componentDidMount() {
-      fetch("http://127.0.0.1:8000/getBooks")
+      fetch("http://127.0.0.1:8000/getBooks?format=json") 
         .then(res => res.json())
         .then(
           (result) => {
             this.setState({
               isLoaded: true,
-              Book: result
+              Books: result
             });
           },
           // Note: it's important to handle errors here
@@ -33,26 +35,34 @@ class BookList extends React.Component {
     }
   
     render() {
-      const { error, isLoaded, Book } = this.state;
+      const { error, isLoaded, Books } = this.state;
       if (error) {
         return <div>Error: {error.message}</div>;
       } else if (!isLoaded) {
         return <div>Loading...</div>;
       } else {
         return (
-          <ul>
-            {Book.map(Book => (
-              <li key={Book.id}>
-                <li>{Book.isbn}</li>
-                <li>{Book.author}</li>
-                <li>{Book.publisher}</li> 
-                <li>{Book.publishyear}</li>
-                <li> {Book.genre}</li>
-              </li>
-            ))}
-          </ul>
-        );
-      }
+          Books.map(function(b, idx){
+               return <Book book={b}  />
+          // <ul>
+          //   {Book.map(Book => (
+          //     <li key={Book.id}>
+          //       <li>{Book.isbn}</li>
+          //       <li>{Book.author}</li>
+          //       <li>{Book.publisher}</li> 
+          //       <li>{Book.publishyear}</li>
+          //       <li> {Book.genre}</li>
+          //     </li>
+          //   ))}
+          // </ul>
+        
+      })
+        ); 
+    
     }
+    
   }
-  export default BookList;
+
+}
+
+  export default Booklist;

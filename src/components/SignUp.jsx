@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom"
+import '../App.css';
 export default function SignUp(){
 
     let handleSubmit = e => {
@@ -16,39 +17,44 @@ export default function SignUp(){
           alert("Successfully Signed Up");
           e.target.email.value = "";
           e.target.password.value = "";
-          <Link to="/login">Login</Link>
         } else {
           alert("Already Registred ");
+          <Link to="/login">Login</Link>
         }
+       
       };
     
       let handleClick = e => {
         e.preventDefault();
-        alert("Sign Up");
+        alert("Successfully Signed Up");
       };
 
   return(
   <div className="App">
 
             {/* <img src={logo} className="logo" alt="Business view - Reports" /> */}
+            <h1>Admin Sign Up</h1>
             <form className="form" onSubmit={handleSubmit}>
+              
                 <div className="input-group">
                     <label htmlFor="email">Email </label>
                     <input type="email" name="email" placeholder="nome@email.com.br" />
                 </div><br/>
                 <div className="input-group">
-                    <label htmlFor="password">Password </label>
-                    <input type="password" name=" Create password" placeholder="************" />
+                    <label htmlFor="password">Create Password </label>
+                    <input type="password" name="password" placeholder="Enter Password" />
                 </div><br/>
                 <div className="input-group">
                     <label htmlFor="password">Password </label>
-                    <input type="password" name="password" placeholder="************" />
+                    <input type="password" name="password" placeholder=" Re-Enter Password" />
                 </div><br/>
-                <button className="primary">Log In</button>
-            </form><br/>
+      
+           
             <button className="secondary" onClick={handleClick}>
                 Sign Up
             </button>
+            
+          </form>
     </div>
   );
 }
