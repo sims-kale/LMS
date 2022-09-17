@@ -13,7 +13,8 @@ class Booklist extends React.Component {
     }
   
     componentDidMount() {
-      fetch("http://127.0.0.1:8000/getBooks?format=json") 
+      console.log('Called')
+      fetch("http://127.0.0.1:8000/getBooks") 
         .then(res => res.json())
         .then(
           (result) => {
@@ -48,6 +49,7 @@ class Booklist extends React.Component {
           //   {Book.map(Book => (
           //     <li key={Book.id}>
           //       <li>{Book.isbn}</li>
+          //       <li>{Book.title}</li>
           //       <li>{Book.author}</li>
           //       <li>{Book.publisher}</li> 
           //       <li>{Book.publishyear}</li>

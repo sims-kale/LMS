@@ -10,8 +10,8 @@
   justify-content: center;
 }
 
-#id01{
-  display: ;
+.parent-main{
+  margin-top:auto;
 }
 
 html {
@@ -31,6 +31,10 @@ body {
   display: flex;
   height: 100%;
   justify-content: center;
+}
+
+#id01,#id02{
+  display: none;
 }
 
 .App {
@@ -142,8 +146,23 @@ button.secondary:hover {
         cursor: pointer;
         width: 100%;
         border-radius: 90%;
+       
 
     }
+
+
+
+    .insertbutton {
+      background-color: rgba(10, 76, 131, 0.815);
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      cursor: pointer;
+      width: 100%;
+      border-radius: 90%;
+      align-items: left;
+
+  }
 
     /*float cancel and signup buttons and add an equal width*/
     .submitbtn {

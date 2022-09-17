@@ -32,7 +32,7 @@ export default function SignUp(){
   return(
   <div className="App">
 
-            {/* <img src={logo} className="logo" alt="Business view - Reports" /> */}
+
             <h1>Admin Sign Up</h1>
             <form className="form" onSubmit={handleSubmit}>
               

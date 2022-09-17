@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import '../App.css'; 
 import { Form, Button } from "react-bootstrap";
+import {Link} from "react-router-dom"
+import axios from "axios";
 
 class Login extends Component {
   handleSubmit = e => {
@@ -14,21 +16,27 @@ class Login extends Component {
     } else if (!e.target.password.value) {
       alert("Password is required");
     } else if (
-      e.target.email.value === "AdminId@example.com" &&
-      e.target.password.value === "123456"
+      e.target.email.value === "noreply@gmail.com" &&
+      e.target.password.value === "pass@122"
     ) {
       alert("Successfully logged in");
-      e.target.email.value = "";
-      e.target.password.value = "";
+      
     } else {
       alert("Invalid Access");
+      
     }
   };
 
+
+
+
   handleClick = e => {
     e.preventDefault();
-
-    alert("Please Sign Up");
+    axios.get('http://127.0.0.1:8000/login',
+    { data:{email: document.getElementById("loginemail").value, password: document.getElementById('loginpass').value} })
+    .then(response => {
+      console.log(response)
+    })
   };
 
   render() {
@@ -38,26 +46,23 @@ class Login extends Component {
         <Form className ="loginSignupForm">
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Control id='loginemail' type="email" placeholder="Enter email" />
         <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
+          never share your email with anyone else.
         </Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Control id='loginpass'type="password" placeholder="Password" />
       </Form.Group>
+     
+      <Button variant="primary" onClick={this.handleClick} type="submit">Log In</Button>
       
-      <Button variant="primary" type="submit">
-        Log In
-      </Button>
-<br/><br/>
-      <Button variant="primary" >
-        Sign Up
-      </Button>
-
-    </Form>
+      <Button variant="primary" >Sign Up</Button>
+      </Form>
+   
+   
 
         {/* <form className="form" onSubmit={this.handleSubmit}>
           <div className="input-group">
@@ -75,6 +80,8 @@ class Login extends Component {
         </button> */}
         
       </div>
+      
+
     );
   }
 }

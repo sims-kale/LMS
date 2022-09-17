@@ -1,7 +1,7 @@
 import Login from './components/Login';
 import React from "react";
 import Home from './components/Home';
-import About from './components/About';
+// import About from './components/About';
 import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard';
 
@@ -47,7 +47,7 @@ function App() {
     <Route path="/" element={<Home />} />
     <Route path="/login" element={<Login />} />
     <Route path="/signup" element={<SignUp />} />
-    <Route path="/about" element={<About />} />
+  
     <Route path="/dashboard" element={<Dashboard />} />
   </Routes>
 
