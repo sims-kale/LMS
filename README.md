@@ -3,10 +3,14 @@
 # LMS - FRONTEND
 This project is used with Django API server, myQL and frontend  is build with React.JS
 
-getBooks - fetch all the books on Dashboard
+Dashboard - fetch all the books on Dashboard
 
-insertBook - insert new book in database
+Insert Button- insert new book in database
 
-deleteBook - delete book from database using Unique ISBN no. of that book
+Delete Button - delete book from database using Unique ISBN no. of that book
 
-updateBook - Update existing book from database. 
+Update Button - Update existing book from database. 
+
+Login Form - To login For Admins only
+
+Signup Form - Signup for new Admins
