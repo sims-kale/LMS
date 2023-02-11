@@ -40,9 +40,9 @@ function Book(props) {
       });
   }
 
-  function test(){
-    console.log('test method');
-  }
+  // function test(){
+  //   console.log('test method');
+  // }
 
   function updateBook() {
 
