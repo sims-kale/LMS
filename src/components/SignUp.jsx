@@ -1,3 +1,4 @@
+import axios from "axios";
 import {Link} from "react-router-dom"
 import '../App.css';
 export default function SignUp(){
@@ -26,6 +27,11 @@ export default function SignUp(){
     
       let handleClick = e => {
         e.preventDefault();
+        axios.get('http://127.0.0.1:8000/dashboard',
+    { data:{email: document.getElementById("loginemail").value, password: document.getElementById('loginpass').value} })
+    .then(response => {
+      console.log(response)
+    })
         alert("Successfully Signed Up");
       };
 

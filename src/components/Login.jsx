@@ -1,89 +1,88 @@
-import React, { Component } from "react";
-import '../App.css'; 
-import { Form, Button } from "react-bootstrap";
-import {Link} from "react-router-dom"
-import axios from "axios";
+import React, { useState } from "react";
+// import ReactDOM from "react-dom";
 
-class Login extends Component {
-  handleSubmit = e => {
-    e.preventDefault();
-    console.log(e.target.email.value);
+import "../App";
 
-    if (!e.target.email.value) {
-      alert(" Admin Email is required");
-    } else if (!e.target.email.value) {
-      alert("Valid email is required");
-    } else if (!e.target.password.value) {
-      alert("Password is required");
-    } else if (
-      e.target.email.value === "noreply@gmail.com" &&
-      e.target.password.value === "pass@122"
-    ) {
-      alert("Successfully logged in");
-      
+function Login() {
+  // React States
+  const [errorMessages, setErrorMessages] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // User Login info
+  const database = [
+    {
+      username: "user1",
+      password: "pass1"
+    },
+    {
+      username: "user2",
+      password: "pass2"
+    }
+  ];
+
+  const errors = {
+    uname: "invalid username",
+    pass: "invalid password"
+  };
+
+  const handleSubmit = (event) => {
+    //Prevent page reload
+    event.preventDefault();
+
+    var { uname, pass } = document.forms[0];
+
+    // Find user login info
+    const userData = database.find((user) => user.username === uname.value);
+
+    // Compare user info
+    if (userData) {
+      if (userData.password !== pass.value) {
+        // Invalid password
+        setErrorMessages({ name: "pass", message: errors.pass });
+      } else {
+        setIsSubmitted(true);
+      }
     } else {
-      alert("Invalid Access");
-      
+      // Username not found
+      setErrorMessages({ name: "uname", message: errors.uname });
     }
   };
 
-
-
-
-  handleClick = e => {
-    e.preventDefault();
-    axios.get('http://127.0.0.1:8000/login',
-    { data:{email: document.getElementById("loginemail").value, password: document.getElementById('loginpass').value} })
-    .then(response => {
-      console.log(response)
-    })
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <h1>Admin Login</h1>
-        <Form className ="loginSignupForm">
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control id='loginemail' type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control id='loginpass'type="password" placeholder="Password" />
-      </Form.Group>
-     
-      <Button variant="primary" onClick={this.handleClick} type="submit">Log In</Button>
-      
-      <Button variant="primary" >Sign Up</Button>
-      </Form>
-   
-   
-
-        {/* <form className="form" onSubmit={this.handleSubmit}>
-          <div className="input-group">
-            <label htmlFor="email">Email</label>
-            <input type="email" name="email" placeholder="nome@email.com.br" />
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password"placeholder="enter password" />
-          </div>
-          <button className="primaryBtn">Log In</button>
-          </form>
-        <button className="primaryBtn" onClick={this.handleClick}>
-          Sign Up
-        </button> */}
-        
-      </div>
-      
-
+  // Generate JSX code for error message
+  const renderErrorMessage = (name) =>
+    name === errorMessages.name && (
+      <div className="error">{errorMessages.message}</div>
     );
-  }
+
+  // JSX code for login form
+  const renderForm = (
+    <div className="form">
+      <form onSubmit={handleSubmit}>
+        <div className="input-container">
+          <label>Username </label>
+          <input type="text" name="uname" required />
+          {renderErrorMessage("uname")}
+        </div>
+        <div className="input-container">
+          <label>Password </label>
+          <input type="password" name="pass" required />
+          {renderErrorMessage("pass")}
+        </div>
+        <div className="button-container">
+          <input type="submit" />
+        </div>
+      </form>
+    </div>
+  );
+
+  return (
+    <div className="app">
+      <div className="login-form">
+        <div className="title">Sign In</div>
+        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+      </div>
+    </div>
+  );
 }
 
 export default Login;
