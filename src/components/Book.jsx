@@ -34,8 +34,8 @@ function Book(props) {
         "isbn": props.book.isbn
       }
     }).then(() => {
-        // alert("Post deleted!");
-        // window.location.reload();
+        alert("Post deleted!");
+        window.location.reload();
 
       });
   }
@@ -52,24 +52,24 @@ function Book(props) {
     props.book.author = document.getElementById('bauthor').value
     props.book.title = document.getElementById('btitle').value
     props.book.publisher = document.getElementById('bpublisher').value
-    // alert("updating")
-    // let newbook = props.book
-    // newbook.isbn = document.getElementById('bisbn').value
+    alert("updating")
+    let newbook = props.book
+    newbook.isbn = document.getElementById('bisbn').value
 
     console.log('Updating book with isbn ' + props.book.isbn)
 
-    // axios.put("http://127.0.0.1:8000/updateBook", {"props":props}).then(() => {
-    //     console.log("updating book");
-    //     // window.location.reload();
+    axios.put("http://127.0.0.1:8000/updateBook", {"props":props}).then(() => {
+        console.log("updating book");
+        window.location.reload();
 
-    //   });
+      });
 
-  //     axios.put('http://127.0.0.1:8000/updateBook', {
-  //   data: props
-  // })
-  // .then(response => {
-  //   console.log(response);
-  // })
+      axios.put('http://127.0.0.1:8000/updateBook', {
+    data: props
+  })
+  .then(response => {
+    console.log(response);
+  })
   // .catch(error => {
   //   console.log(error);
   // });

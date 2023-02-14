@@ -23,7 +23,7 @@ function Dashboard() {
           "isbn": props.book.isbn
         }
       }).then(() => {
-          // alert("Book Inserted!");
+          alert("Book Inserted!");
           window.location.reload();
   
         });
@@ -50,9 +50,7 @@ function Dashboard() {
               <label><b>Genre </b></label>
               <input type="text" placeholder="Enter genre" name="genre" required/>
 
-                {/* <label><b>Flipkart Product</b></label>
-                <input type="link" placeholder="Add Flipkart Link" name="flipkart" required/> */}
-
+                
                   <div className="clearfix">
 
                     <button type="submit" onClick={submitbtn}> Insert Book</button>
