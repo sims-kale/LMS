@@ -5,7 +5,7 @@ import Home from './components/Home';
 // import About from './components/About';
 import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard';
-
+import Book from './components/Book';
 
 // import {
 //   BrowserRouter as Router,
@@ -26,7 +26,7 @@ function App() {
     <Route path="/login" element={<Login />} />
     <Route path="/adminlogin" element={<AdminLogin/>} />
     <Route path="/signup" element={<SignUp />} />
-  
+    <Route path ="/books" element={<Book/>}/>
     <Route path="/dashboard" element={<Dashboard />} />
   </Routes>
 
