@@ -3,9 +3,9 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-// import Booklist from './Booklist';
-// import '../App.css';
-export default function main({ props, visible, onClose }) {
+
+export default function main(props) {
+
   function updatepopup() {
     document.getElementById("id02").style.display = "block";
     document.getElementById("bisbn").value = props.book.isbn;
@@ -15,6 +15,7 @@ export default function main({ props, visible, onClose }) {
     document.getElementById("bpyear").value = props.book.publishyear;
     document.getElementById("bgenre").value = props.book.genre;
   }
+
   function closepopup() {
     document.getElementById("id02").style.display = "none";
   }
@@ -36,10 +37,6 @@ export default function main({ props, visible, onClose }) {
         window.location.reload();
       });
   }
-
-  // function test(){
-  //   console.log('test method');
-  // }
 
   function updateBook() {
     props.book.genre = document.getElementById("bgenre").value;
@@ -66,34 +63,32 @@ export default function main({ props, visible, onClose }) {
       .then((response) => {
         console.log(response);
       });
-    // .catch(error => {
-    //   console.log(error);
-    // });
   }
 
   // {console.log(props.book)}
 
   return (
-    /* //   <div>
+   <div>
     
-  //   <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '18rem' }} className= "bg-transparent bg-opacity-40 backdrop-blur-sm">
       
-  //     <Card.Body>
-  //       <Card.Title>{props.book.title}</Card.Title>
-  //       <Card.Text>
-  //         {props.book.publisher}<br />
-  //         {props.book.publishyear}<br />
-  //         {props.book.isbn}<br />
-  //         {props.book.author}<br />
-  //         {props.book.title}<br />
-  //         {props.book.genre}<br />
-  //       </Card.Text>
+      <Card.Body className="bg-transparent bg-opacity-40 backdrop-blur-sm">
+        <Card.Title>{props.book.title}</Card.Title>
+        <Card.Text>
+          {props.book.publisher}<br />
+          {props.book.publishyear}<br />
+          {props.book.isbn}<br />
+          {props.book.author}<br />
+          {props.book.title}<br />
+          {props.book.genre}<br />
+        </Card.Text>
         
-  //       <Button variant="primary" onClick={deleteBook} >Delete</Button> {" "}
-  //       <Button onClick={updatepopup} variant="primary">Update</Button>
+        <Button variant="primary" onClick={deleteBook} >Delete</Button> {" "}
+        <Button onClick={updatepopup} variant="primary">Update</Button>
         
-  //     </Card.Body>
-  //   </Card>
+      </Card.Body>
+    </Card>
+  </div>
     
   //    <div className="parent-main">
   //    <div id="id02" className="addlink">
@@ -126,6 +121,5 @@ export default function main({ props, visible, onClose }) {
    
   //            </div> */
     /* </div> */
-    <></>
   );
 }

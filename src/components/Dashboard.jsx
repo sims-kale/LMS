@@ -1,15 +1,14 @@
 import Booklist from "./Booklist";
 import { Button } from "react-bootstrap";
-// import '../App';
-import { axios } from "axios";
-//import Book from "./Book";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Dashboard() {
   
   let book = {}
 
   function submitbtn() {
+    console.log('submit called')
     book.genre = document.getElementById("bgenre").value;
     book.publishyear = document.getElementById("bpyear").value;
     book.isbn = document.getElementById("bisbn").value;
@@ -19,8 +18,7 @@ export default function Dashboard() {
 
     console.log("Book Inserted" + book.isbn);
 
-    axios
-      .post("http://127.0.0.1:8000/insertBook", {
+    axios.post("http://127.0.0.1:8000/insertBook", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -40,7 +38,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      <div className="bg-white">
+      <div className="bg-white mt-4 mb-4">
         <button
           onClick={() => showpopup()}
           className="bg-red-400 text-white px-3 py-2 rounded hover:scale-95 transition text-xl"
@@ -50,10 +48,12 @@ export default function Dashboard() {
         
       </div>
 
+      <Booklist/>
+
       <div>
         
-        <div id="id01" className="w-full fixed inset-0 bg-transparent bg-opacity-40 backdrop-blur-sm flex justify-center items-center">
-          <form class="w-full max-w-lg justify-center items-center">
+        <div id="id01" className="w-full fixed inset-0 bg-transparent bg-opacity-95 backdrop-blur-sm flex justify-center items-center">
+          <form class="w-full max-w-lg justify-center items-center bg-black p-8 justify-center" >
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
@@ -135,14 +135,13 @@ export default function Dashboard() {
                 <input
                   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   id="bpyear"
-                  type="text"
+                  type="number"
                   placeholder="Publish Year"
                 />
               </div>
-              <div className="bg-white p-3 rounded">
+              <div className="bg-white p-3 rounded   ">
                 <button type="button" onClick={submitbtn}>
-                  {" "}
-                  Submit{" "}
+                  Submit
                 </button>
               </div>
             </div>
@@ -154,6 +153,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+     
     </div>
   );
 }
