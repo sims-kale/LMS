@@ -1,14 +1,14 @@
 import Booklist from "./Booklist";
-import { Button } from "react-bootstrap";
-import { useState } from "react";
+// import { Button } from "react-bootstrap";
+
 import axios from "axios";
 
-export default function Dashboard() {
-  
-  let book = {}
+
+function Dashboard() {
+  let book = {};
 
   function submitbtn() {
-    console.log('submit called')
+    console.log("submit called");
     book.genre = document.getElementById("bgenre").value;
     book.publishyear = document.getElementById("bpyear").value;
     book.isbn = document.getElementById("bisbn").value;
@@ -18,7 +18,8 @@ export default function Dashboard() {
 
     console.log("Book Inserted" + book.isbn);
 
-    axios.post("http://127.0.0.1:8000/insertBook", {
+    axios
+      .post("http://127.0.0.1:8000/insertBook", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -40,20 +41,32 @@ export default function Dashboard() {
     <div>
       <div className="bg-white mt-4 mb-4">
         <button
-          onClick={() => showpopup()}
+          type="button"
           className="bg-red-400 text-white px-3 py-2 rounded hover:scale-95 transition text-xl"
+          onClick={showpopup}
         >
           Insert Book
         </button>
-        
       </div>
 
-      <Booklist/>
+      <Booklist />
 
       <div>
-        
-        <div id="id01" className="w-full fixed inset-0 bg-transparent bg-opacity-95 backdrop-blur-sm flex justify-center items-center">
-          <form class="w-full max-w-lg justify-center items-center bg-black p-8 justify-center" >
+        <div
+          id="id01"
+          className="w-full fixed inset-0 bg-transparent bg-opacity-100 backdrop-blur-sm flex justify-center items-center"
+        >
+          <form class="w-full max-w-lg justify-center items-center bg-blue-200 p-3 ">
+            <div class="relative h-20 w-100">
+              <h3 class="font-semibold content-center absolute py-2" > Insert Book</h3>
+              <button
+                type="button"
+                class="absolute top-0 right-0 h-0 w-0 font-semibold text-black bg px-3 py-2 rounded hover:scale-95 transition text-xl"
+                onClick={closepopup}
+              >
+                X
+              </button>
+            </div>
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
@@ -122,7 +135,7 @@ export default function Dashboard() {
                   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   id="bgenre"
                   type="text"
-                  placeholder="Genre"
+                  placeholder="Enter Genre"
                 />
               </div>
               <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -133,29 +146,31 @@ export default function Dashboard() {
                   Publish Year
                 </label>
                 <input
-                  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   id="bpyear"
                   type="number"
                   placeholder="Publish Year"
                 />
+
               </div>
-              <div className="bg-white p-3 rounded   ">
-                <button type="button" onClick={submitbtn}>
+            </div>
+            <div class="md:flex md:items-center">
+              <div class="md:w-2/5"></div>
+              <div class="md:w-2/3">
+                <button
+                  onClick={submitbtn}
+                  class="shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                  type="button"
+                >
+          
                   Submit
                 </button>
               </div>
             </div>
           </form>
-          <div>
-            <div className="bg-white p-3 rounded">
-              <button onClick={()=>closepopup()}> close </button>
-            </div>
-          </div>
         </div>
       </div>
-     
     </div>
   );
 }
-
-
+export default Dashboard;
